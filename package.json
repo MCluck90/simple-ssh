@@ -1,7 +1,7 @@
 {
   "name": "simple-ssh",
   "version": "0.5.0",
-  "description": "A wrapper for SSH2 to make it easier to perform commands over SSH",
+  "description": "A wrapper for ssh2 to make it easier to perform commands over SSH",
   "keywords": [
     "ssh",
     "ssh2"
@@ -13,6 +13,7 @@
       "url": "http://github.com/MCluck90/simple-ssh/blob/master/LICENSE.txt"
     }
   ],
+  "main": "./lib/ssh.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/MCluck90/simple-ssh.git"
