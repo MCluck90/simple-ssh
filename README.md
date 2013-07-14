@@ -94,13 +94,13 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
 
 ### Functions
 
-* **Constructor**( [_config_] )
+* **Constructor**( [ _config_ ] )
     * **config** { _Object_ }:
         * **config.host** {  _String_ }: Hostname
         * **config.port** { _Number_ }: Port number (default: `22`)
         * **config.user** { _String_ }: Username
         * **config.pass** { _String_ }: Password
-* **exec**( _command_, [_options_] ): **Adds a command to the stack**
+* **exec**( _command_, [ _options_ ] ): **Adds a command to the stack**
     * **command** { _String_ }: Command to be executed
     * **options** { _Object_ }:
         * **options.args** { _String[]_ }: Additional command line arguments (default: `null`)
@@ -111,7 +111,7 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
         * **options.exit** { _Function( code )_ }: Exit handler
             * **code** { _Number_ }: Exit code
         * **options.pty** { _Boolean_ }: Allocates a pseudo-tty, useful for command which require `sudo` (default: `false`)
-* **start**( [_options_] ): **Starts executing the commands**
+* **start**( [ _options_ ] ): **Starts executing the commands**
     * **options** { _Object_ }:
         * **options.success** { _Function()_ }: Called on successful connection
         * **options.fail** { _Function(err)_ }: Called if the connection failed
