@@ -62,7 +62,7 @@ ssh.exec('exit 69', {
 
 ```javascript
 ssh
-    .exec('echo "Node.js", {
+    .exec('echo "Node.js"', {
         out: console.log
     })
     .exec('echo "is"', {
