@@ -1,0 +1,28 @@
+{
+  "name": "simple-ssh",
+  "version": "0.5.0",
+  "description": "A wrapper for SSH2 to make it easier to perform commands over SSH",
+  "keywords": [
+    "ssh",
+    "ssh2"
+  ],
+  "author": "Mike Cluck <mcluck90@gmail.com>",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/MCluck90/simple-ssh/blob/master/LICENSE.txt"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/MCluck90/simple-ssh.git"
+  },
+  "devDependencies": {
+    "expect.js": "~0.2.0",
+    "ssh2": "~0.2.10",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0"
+  }
+}
