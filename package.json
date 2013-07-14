@@ -24,5 +24,8 @@
     "grunt-simple-mocha": "~0.4.0",
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.0"
+  },
+  "dependencies": {
+    "xtend": "~2.0.6"
   }
 }
