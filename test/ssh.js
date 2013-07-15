@@ -145,7 +145,7 @@ describe('SSH', function() {
             }).start();
         });
 
-        it('should ignore upcoming commands `exit` returns false', function(done) {
+        it('should ignore upcoming commands when `exit` returns false', function(done) {
             ssh
                 .exec('exit 0', {
                     exit: function() {
@@ -208,6 +208,41 @@ describe('SSH', function() {
                     exit: function() {
                         expect(callCount).to.be(2);
                         callCount += 1;
+                    }
+                })
+                .start();
+        });
+    });
+
+    describe('restart', function() {
+        it('should create a new Connection object', function() {
+            var oldConnection = ssh._c;
+            ssh.restart();
+            expect(oldConnection).to.not.be(ssh._c);
+        });
+
+        it('should clear the commands queue', function() {
+            ssh
+                .exec('exit 0')
+                .exec('exit 1')
+                .exec('exit 2');
+            expect(ssh._commands).to.have.length(3);
+
+            ssh.restart();
+            expect(ssh._commands).to.have.length(0);
+        });
+
+        it('should stop the current connection before replacing it', function(done) {
+            ssh
+                .exec('exit 0', {
+                    exit: function() {
+                        ssh.restart();
+                        done();
+                    }
+                })
+                .exec('exit 0', {
+                    exit: function() {
+                        expect().to.fail('Connection should have been ended');
                     }
                 })
                 .start();
