@@ -116,8 +116,48 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
         * **options.success** { _Function()_ }: Called on successful connection
         * **options.fail** { _Function(err)_ }: Called if the connection failed
             * **err** { _Error_ }: Error information
-* **end**() ** Ends the SSH session**
+* **end**(): **Ends the SSH session** (this is automatically called at the end of a command queue).
 
+### Flow Control
+
+Sometimes you may find yourself needing to change which commands are executed. The flow can be changed by returning `false` from an `exit` handler.
+
+**Note**: This only works if `false` is explicitly returned. "Falsy" values are not sufficient (since `undefined` is implicitly returned and it's "falsy").
+
+* Ending prematurely:
+
+```javascript
+ssh
+    .exec('pwd', {
+        exit: function() {
+            return false;
+        }
+    })
+    .exec('echo "Not executed"')
+    .start();
+```
+
+* Running a new queue of commands:
+
+```javascript
+ssh
+    .exec('exit', {
+        args: [ Math.round(Math.random()) ],
+        exit: function(code) {
+            if (code === 1) {
+                // Setup the new command queue
+                ssh.exec('echo "new queue"');
+                return false;
+            }
+        }
+    })
+    .exec('exit 0', {
+        exit: function() {
+            console.log('Previous command did not return false');
+        }
+    })
+    .start();
+```
 
   [1]: https://github.com/mscdex/ssh2
   [2]: http://nodejs.org
