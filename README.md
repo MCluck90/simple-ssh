@@ -116,6 +116,7 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
         * **options.success** { _Function()_ }: Called on successful connection
         * **options.fail** { _Function(err)_ }: Called if the connection failed
             * **err** { _Error_ }: Error information
+* **reset**(): **Clears the command queue and resets the current connection**
 * **end**(): **Ends the SSH session** (this is automatically called at the end of a command queue).
 
 ### Flow Control
