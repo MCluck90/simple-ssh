@@ -214,10 +214,10 @@ describe('SSH', function() {
         });
     });
 
-    describe('restart', function() {
+    describe('reset', function() {
         it('should create a new Connection object', function() {
             var oldConnection = ssh._c;
-            ssh.restart();
+            ssh.reset();
             expect(oldConnection).to.not.be(ssh._c);
         });
 
@@ -228,7 +228,7 @@ describe('SSH', function() {
                 .exec('exit 2');
             expect(ssh._commands).to.have.length(3);
 
-            ssh.restart();
+            ssh.reset();
             expect(ssh._commands).to.have.length(0);
         });
 
@@ -236,7 +236,7 @@ describe('SSH', function() {
             ssh
                 .exec('exit 0', {
                     exit: function() {
-                        ssh.restart();
+                        ssh.reset();
                         done();
                     }
                 })
