@@ -79,6 +79,17 @@ ssh
 // awesome!
 ```
 
+* Get the number of commands:
+
+```javascript
+ssh
+    .exec('exit 1')
+    .exec('exit 2')
+    .exec('exit 3');
+
+console.log(ssh.count()); // 3
+```
+
 * Running a command using `sudo`
 
 ```javascript
@@ -86,6 +97,32 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
     pty: true,
     out: console.log
 }).start();
+```
+
+* Resetting a connection and the commands
+
+```javascript
+// Echos out any messages the user sent in if 10 or more have been queued
+var msgInterval = setInterval(function() {
+    if (ssh.count() > 10) {
+        ssh.start();
+    }
+}, 1000);
+
+socket.on('message', function(msg) {
+    // If a 'reset' message is received, clear previous messages
+    if (msg === 'reset') {
+        ssh.reset(function(err) {
+            if (err) {
+                throw err;
+            }
+
+            ssh.exec('echo "reset"');
+        });
+    } else {
+        ssh.exec('echo "' + msg + '"');
+    }
+});
 ```
 
 ----------
@@ -107,16 +144,20 @@ ssh.exec('sudo echo "Pseudo-sudo"', {
         * **options.out** { _Function( stdout )_ }: `stdout` handler
             * **stdout** { _String_ }: Output streamed through `stdout`
         * **options.err** { _Function( stderr )_ }: `stderr` handler
-            * **stderr** { _String_ }: Output stream through `stderr`
-        * **options.exit** { _Function( code )_ }: Exit handler
+            * **stderr** { _String_ }: Output streamed through `stderr`
+        * **options.exit** { _Function( code, stdout, stderr )_ }: Exit handler
             * **code** { _Number_ }: Exit code
+            * **stdout** { _String_ }: All of the standard output concatenated together
+            * **stderr** { _String_ }: All of the error output concatenated together
         * **options.pty** { _Boolean_ }: Allocates a pseudo-tty, useful for command which require `sudo` (default: `false`)
 * **start**( [ _options_ ] ): **Starts executing the commands**
     * **options** { _Object_ }:
         * **options.success** { _Function()_ }: Called on successful connection
-        * **options.fail** { _Function(err)_ }: Called if the connection failed
+        * **options.fail** { _Function( err )_ }: Called if the connection failed
             * **err** { _Error_ }: Error information
-* **reset**(): **Clears the command queue and resets the current connection**
+* **reset**( [ _callback_ ] ): **Clears the command queue and resets the current connection**
+    * **callback** { _Function( err )_ }: Called when the connection has been successfully reset
+        * **err** { _Error_ }: Error information
 * **end**(): **Ends the SSH session** (this is automatically called at the end of a command queue).
 
 ### Flow Control
