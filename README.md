@@ -125,6 +125,24 @@ socket.on('message', function(msg) {
 });
 ```
 
+* Listening for additional events
+
+```javascript
+ssh.on('error', function(err) {
+    console.log('Oops, something went wrong.');
+    console.log(err);
+    ssh.end();
+});
+```
+
+* Event handlers can be chained as well
+
+```javascript
+ssh
+    .on('error', onSSHError)
+    .on('ready', onSSHReady);
+```
+
 ----------
 
 # API
@@ -150,6 +168,9 @@ socket.on('message', function(msg) {
             * **stdout** { _String_ }: All of the standard output concatenated together
             * **stderr** { _String_ }: All of the error output concatenated together
         * **options.pty** { _Boolean_ }: Allocates a pseudo-tty, useful for command which require `sudo` (default: `false`)
+* **on**( _event_, _callback_ ): **Add a listener for the specified event** (Courtesy of [@alexandrejablon][3])
+    * **event** { _String_ }: Event to listen to
+    * **callback** { _Function_ }: Executed on the event
 * **start**( [ _options_ ] ): **Starts executing the commands**
     * **options** { _Object_ }:
         * **options.success** { _Function()_ }: Called on successful connection
@@ -203,3 +224,4 @@ ssh
 
   [1]: https://github.com/mscdex/ssh2
   [2]: http://nodejs.org
+  [3]: https://github.com/alexandrejablon
