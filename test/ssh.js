@@ -1,4 +1,4 @@
-
+'use strict';
 
 var SSH = require('../lib/ssh.js'),
     expect = require('expect.js'),
