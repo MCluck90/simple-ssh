@@ -168,7 +168,7 @@ ssh
             * **stdout** { _String_ }: All of the standard output concatenated together
             * **stderr** { _String_ }: All of the error output concatenated together
         * **options.pty** { _Boolean_ }: Allocates a pseudo-tty, useful for command which require `sudo` (default: `false`)
-* **on**( _event_, _callback_ ): **Add a listener for the specified event** (Courtesy of [@alexandrejablon][3])
+* **on**( _event_, _callback_ ): **Add a listener for the specified event** (Courtesy of [@alexjab][3])
     * **event** { _String_ }: Event to listen to
     * **callback** { _Function_ }: Executed on the event
 * **start**( [ _options_ ] ): **Starts executing the commands**
@@ -224,4 +224,4 @@ ssh
 
   [1]: https://github.com/mscdex/ssh2
   [2]: http://nodejs.org
-  [3]: https://github.com/alexandrejablon
+  [3]: https://github.com/alexjab
