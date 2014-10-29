@@ -1,6 +1,6 @@
 {
   "name": "simple-ssh",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "A wrapper for ssh2 to make it easier to perform commands over SSH",
   "keywords": [
     "ssh",
@@ -27,6 +27,6 @@
   },
   "dependencies": {
     "xtend": "~2.0.6",
-    "ssh2": "~0.2.10"
+    "ssh2": "~0.3.6"
   }
 }
