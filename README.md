@@ -155,6 +155,9 @@ ssh
         * **config.port** { _Number_ }: Port number (default: `22`)
         * **config.user** { _String_ }: Username
         * **config.pass** { _String_ }: Password
+        * **config.timeout** { _Number_ }: Connection timeout in milliseconds (default: `10000`)
+        * **config.key** { _String_ }: SSH key
+        * **config.baseDir** { _String_ }: Base directory. If this is set, each command will be preceeded by `cd ${this.baseDir}`
 * **exec**( _command_, [ _options_ ] ): **Adds a command to the stack**
     * **command** { _String_ }: Command to be executed
     * **options** { _Object_ }:
@@ -180,6 +183,16 @@ ssh
     * **callback** { _Function( err )_ }: Called when the connection has been successfully reset
         * **err** { _Error_ }: Error information
 * **end**(): **Ends the SSH session** (this is automatically called at the end of a command queue).
+ 
+### Properties
+
+* **host** { _String_ }: Host to connect to
+* **port** { _Number_ }: Port to connect through (default: `22`)
+* **user** { _String_ }: User name
+* **pass** { _String_ }: Password
+* **timeout** { _Number_ }: Connection timeout in milliseconds (default: `10000`)
+* **key** { _String_ }: SSH key
+* **baseDir** { _String_ }: If set, will change directory to `baseDir` before each command
 
 ### Flow Control
 
