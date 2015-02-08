@@ -26,7 +26,7 @@
     "grunt-contrib-jshint": "~0.6.0"
   },
   "dependencies": {
-    "ssh2": "^0.4.3",
+    "ssh2": "^0.3.6",
     "xtend": "~2.0.6"
   }
 }
