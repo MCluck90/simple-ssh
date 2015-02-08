@@ -38,6 +38,17 @@ ssh.exec('echo', {
 }).start();
 ```
 
+* Connecting with the active SSH Agent with Agent Forwarding
+
+```javascript
+var ssh = new ssh({
+    host: 'localhost',
+    user: 'username',
+    agent: process.env.SSH_AUTH_SOCK,
+    agentForward: true
+})
+```
+
 * Capturing error output:
 
 ```javascript
@@ -158,6 +169,8 @@ ssh
         * **config.timeout** { _Number_ }: Connection timeout in milliseconds (default: `10000`)
         * **config.key** { _String_ }: SSH key
         * **config.baseDir** { _String_ }: Base directory. If this is set, each command will be preceeded by `cd ${this.baseDir}`
+        * **config.agent** { _String_ }: Connects with the given SSH agent. If this is set, no need to specify a private key or password.
+        * **config.agentForward** { _Boolean_ }: Set to true to connect with agent forwarding.
 * **exec**( _command_, [ _options_ ] ): **Adds a command to the stack**
     * **command** { _String_ }: Command to be executed
     * **options** { _Object_ }:
