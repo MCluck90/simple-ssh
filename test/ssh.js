@@ -2,11 +2,16 @@
 
 var SSH = require('../lib/ssh.js'),
     expect = require('expect.js'),
+    fs = require('fs'),
 
     config = require('../config/ssh.json'),
     ssh;
 
 describe('SSH', function() {
+    if (config.key) {
+        config.key = fs.readFileSync(config.key);
+    }
+
     beforeEach(function() {
         ssh = new SSH(config);
     });
