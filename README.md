@@ -74,13 +74,13 @@ ssh.exec('exit 69', {
 ```javascript
 ssh
     .exec('echo "Node.js"', {
-        out: console.log
+        out: console.log.bind(console)
     })
     .exec('echo "is"', {
-        out: console.log
+        out: console.log.bind(console)
     })
     .exec('echo "awesome!"', {
-        out: console.log
+        out: console.log.bind(console)
     })
     .start();
 
@@ -106,7 +106,7 @@ console.log(ssh.count()); // 3
 ```javascript
 ssh.exec('sudo echo "Pseudo-sudo"', {
     pty: true,
-    out: console.log
+    out: console.log.bind(console)
 }).start();
 ```
 
@@ -168,6 +168,7 @@ ssh
         * **config.pass** { _String_ }: Password
         * **config.timeout** { _Number_ }: Connection timeout in milliseconds (default: `10000`)
         * **config.key** { _String_ }: SSH key
+        * **config.passphrase** { _String_ }: Passphrase
         * **config.baseDir** { _String_ }: Base directory. If this is set, each command will be preceeded by `cd ${this.baseDir}`
         * **config.agent** { _String_ }: Connects with the given SSH agent. If this is set, no need to specify a private key or password.
         * **config.agentForward** { _Boolean_ }: Set to true to connect with agent forwarding.
@@ -196,7 +197,7 @@ ssh
     * **callback** { _Function( err )_ }: Called when the connection has been successfully reset
         * **err** { _Error_ }: Error information
 * **end**(): **Ends the SSH session** (this is automatically called at the end of a command queue).
- 
+
 ### Properties
 
 * **host** { _String_ }: Host to connect to
