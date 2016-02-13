@@ -69,6 +69,14 @@ ssh.exec('exit 69', {
 }).start();
 ```
 
+* Sending data to stdin:
+
+```javascript
+ssh.exec('cat > /path/to/remote/file', {
+   in: fs.readFileSync('/path/to/local/file')
+}).start();
+```
+
 * Chaining commands together:
 
 ```javascript
@@ -176,6 +184,7 @@ ssh
     * **command** { _String_ }: Command to be executed
     * **options** { _Object_ }:
         * **options.args** { _String[]_ }: Additional command line arguments (default: `null`)
+        * **options.in** { _String_ }: Input to be sent to `stdin`
         * **options.out** { _Function( stdout )_ }: `stdout` handler
             * **stdout** { _String_ }: Output streamed through `stdout`
         * **options.err** { _Function( stderr )_ }: `stderr` handler
