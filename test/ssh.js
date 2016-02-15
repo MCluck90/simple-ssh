@@ -100,6 +100,17 @@ describe('SSH', function() {
                 }
             }).start();
         });
+        
+        it('should provide data on stdin', function(done) {
+            var input = 'The quick brown fox\njumps over the lazy dog.\n';
+            ssh.exec('cat', {
+                in: input,
+                out: function(stdout) {
+                    expect(stdout).to.be(input);
+                    done();
+                }
+            }).start();
+        });
 
         it('should handle multiple commands', function(done) {
             ssh
