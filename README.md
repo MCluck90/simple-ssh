@@ -1,3 +1,5 @@
+Note: I really don't work on this project anymore. It's still fully functional, I'm just not interested in working on it anymore. If you post an issue, I might respond and I might not. If you submit a pull request, I'll most likely accept it. Hopefully it continues to help people around the world. :earth_americas:
+
 # simple-ssh
 
 A wrapper for the [ssh2 client module by Brian White][1] which makes it easier to run a sequence of commands over SSH.
