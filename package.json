@@ -1,6 +1,6 @@
 {
   "name": "simple-ssh",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "A wrapper for ssh2 to make it easier to perform commands over SSH",
   "keywords": [
     "ssh",
