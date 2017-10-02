@@ -1,0 +1,25 @@
+{
+    "curly": true,
+    "eqeqeq": true,
+    "immed": true,
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "nonew": true,
+    "quotmark": "single",
+    "undef": true,
+    "unused": true,
+    "strict": true,
+
+    "globalstrict": true,
+
+    "devel": true,
+    "node": true,
+
+    "globals": {
+        "afterEach": true,
+        "beforeEach": true,
+        "describe": true,
+        "it": true
+    }
+}
